@@ -2,10 +2,7 @@ import React from 'react'
 import { FlatList } from 'react-native'
 import ArticleRow from './ArticleRow'
 
-const Articles = ({ articles, fetchArticles }) => {
-  console.log(articles)
-
-  return (
+const Articles = ({ articles, fetchArticles }) => (
   <FlatList
     data={articles}
     renderItem={ArticleRow}
@@ -14,6 +11,5 @@ const Articles = ({ articles, fetchArticles }) => {
     refreshing={false}
   />
 )
-  }
 
 export default Articles

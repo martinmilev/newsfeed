@@ -12,49 +12,53 @@ import {
   Right,
   Body,
 } from 'native-base'
+import { useHistory } from 'react-router-dom'
 
-const Article = ({ article }) => (
-  <Container>
-    <Content>
-      <Card style={{ flex: 0 }}>
-        <CardItem>
-          <Left>
+const Article = () => {
+  const article = useHistory().location.state.article
+  return (
+    <Container>
+      <Content>
+        <Card style={{ flex: 0 }}>
+          <CardItem>
+            <Left>
+              <Body>
+                <Text note>{article.author}</Text>
+              </Body>
+            </Left>
+            <Right>
+              <Body>
+                <Text note>{new Date().toUTCString(article.publishedAt)}</Text>
+              </Body>
+            </Right>
+          </CardItem>
+          <CardItem>
             <Body>
-              <Text note>{article.author}</Text>
+              <Image
+                source={{ uri: article.urlToImage }}
+                style={{ height: 300, width: 300, flex: 1 }}
+              />
             </Body>
-          </Left>
-          <Right>
-            <Body>
-              <Text note>{new Date().toUTCString(article.publishedAt)}</Text>
-            </Body>
-          </Right>
-        </CardItem>
-        <CardItem>
-          <Body>
-            <Image
-              source={{ uri: article.urlToImage }}
-              style={{ height: 300, width: 300, flex: 1 }}
-            />
-          </Body>
-        </CardItem>
-        <CardItem>
-          <Left>
-            <Body>
-              <H3>{article.description}</H3>
-              <Text>{article.content}</Text>
-            </Body>
-          </Left>
-        </CardItem>
-        <CardItem>
-          <Left>
-            <Button transparent textStyle={{ color: '#87838B' }}>
-              <Text>{article.url}</Text>
-            </Button>
-          </Left>
-        </CardItem>
-      </Card>
-    </Content>
-  </Container>
-)
+          </CardItem>
+          <CardItem>
+            <Left>
+              <Body>
+                <H3>{article.description}</H3>
+                <Text>{article.content}</Text>
+              </Body>
+            </Left>
+          </CardItem>
+          <CardItem>
+            <Left>
+              <Button transparent textStyle={{ color: '#87838B' }}>
+                <Text>{article.url}</Text>
+              </Button>
+            </Left>
+          </CardItem>
+        </Card>
+      </Content>
+    </Container>
+  )
+}
 
 export default Article

@@ -16,7 +16,9 @@ const App: () => React$Node = () => {
     }
 
     const result = await fetch(url).then((response) => response.json())
-    const articles = result.articles.map((item, i) => ({ ...item, id: i + 1 }))
+    const articles = result.articles 
+      ? result.articles.map((item, i) => ({ ...item, id: i + 1 }))
+      : []
 
     setState([...articles])
   }
