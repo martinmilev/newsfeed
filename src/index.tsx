@@ -3,6 +3,7 @@ import { Route } from 'react-router-native'
 import { Articles } from './components/Articles'
 import { Article } from './components/Article'
 import { Header } from './components/Header'
+import { Footer } from './components/Footer'
 import { ArticleType } from './models/article'
 import { Translations } from './models/translations'
 
@@ -10,12 +11,10 @@ const routes = [
   {
     path: '/',
     exact: true,
-    header: (props) => <Header {...props} />,
     main: (props) => <Articles {...props} />,
   },
   {
     path: '/article/:id',
-    header: (props) => <Header {...props} />,
     main: (props) => <Article article={props.history.location.state.article} {...props} />,
   },
 ]
@@ -35,7 +34,7 @@ const NewsFeed: ({ fetchArticles, articles, translations }: {
           path={route.path}
           render={(props) => (
             <Fragment>
-              <route.header fetchArticles={fetchArticles} translations={translations} />
+              <Header fetchArticles={fetchArticles} translations={translations} />
               <route.main
                 articles={articles}
                 fetchArticles={fetchArticles}
@@ -43,6 +42,7 @@ const NewsFeed: ({ fetchArticles, articles, translations }: {
                 history={props.history}
                 {...props}
               />
+              <Footer path={props.location.pathname} translations={translations}  />
             </Fragment>
           )}
         />
