@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, BackHandler, Text } from 'react-native'
-export default class BackButton extends Component {
+import { History } from 'history';
+
+interface Props {
+  history: History
+}
+
+export default class BackButton extends Component<Props> {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
   }

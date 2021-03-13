@@ -3,7 +3,9 @@ import { Header as NBHeader, Item, Input, Left, Body, Right } from 'native-base'
 import { BackButton } from '../BackButton'
 import { useHistory } from 'react-router-dom'
 
-const Header = ({ fetchArticles }) =>
+const Header: ({ fetchArticles }: {
+  fetchArticles: (query: string) => {};
+}) => JSX.Element = ({ fetchArticles }) =>
   useHistory().location.pathname == '/' ? (
     <NBHeader searchBar rounded>
       <Item>

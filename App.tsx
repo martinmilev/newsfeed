@@ -2,33 +2,36 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { NativeRouter } from 'react-router-native'
 import NewsFeed from './src'
+import { ArticleType } from './src/models/article'
 
-const App = () => {
+const App: () => JSX.Element = () => {
   const apiUrl = 'https://newsapi.org/v2'
   const apiKey = '4904a297062d46c59e955ebd0e7db5af'
 
   const [state, setState] = useState([])
 
-  const fetchArticles = async (query) => {
+  const fetchArticles = async (query: string) => {
     let url = `${apiUrl}/top-headlines?country=us&apiKey=${apiKey}`
-    if (!query) {
+    if (query !== '') {
       url = `${apiUrl}/everything?q=${query}&apiKey=${apiKey}`
     }
 
     const result = await fetch(url).then((response) => response.json())
     const articles = result.articles
-      ? result.articles.map((item, i) => ({
+      ? result.articles.map((item: ArticleType, i: number) => {
+        return {
           ...item,
           id: i + 1,
-          publishedAt: new Date().toDateString(item.publishedAt),
-        }))
+          publishedAt: new Date(item.publishedAt).toDateString(),
+        }
+      })
       : []
 
     setState([...articles])
   }
 
   useEffect(() => {
-    fetchArticles()
+    fetchArticles('')
   }, [])
 
   return (

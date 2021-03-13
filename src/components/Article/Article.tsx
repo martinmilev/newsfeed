@@ -12,10 +12,12 @@ import {
   Right,
   Body,
 } from 'native-base'
-import { useHistory } from 'react-router-dom'
+import { ArticleType } from '../../models/article'
 
-const Article = () => {
-  const article = useHistory().location.state.article
+const Article: ({ article }: {
+  article: ArticleType
+}) => JSX.Element = ({ article }) => {
+
   return (
     <Container>
       <Content>
