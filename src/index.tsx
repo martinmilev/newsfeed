@@ -4,6 +4,7 @@ import { Articles } from './components/Articles'
 import { Article } from './components/Article'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
+import { Settings } from './components/Settings'
 import { ArticleType } from './models/article'
 import { Translations } from './models/translations'
 
@@ -16,6 +17,10 @@ const routes = [
   {
     path: '/article/:id',
     main: (props) => <Article article={props.history.location.state.article} {...props} />,
+  },
+  {
+    path: '/settings',
+    main: (props) => <Settings {...props} />,
   },
 ]
 
@@ -42,7 +47,10 @@ const NewsFeed: ({ fetchArticles, articles, translations }: {
                 history={props.history}
                 {...props}
               />
-              <Footer path={props.location.pathname} translations={translations}  />
+              <Footer
+                history={props.history}
+                translations={translations}
+              />
             </Fragment>
           )}
         />

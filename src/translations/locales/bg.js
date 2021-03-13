@@ -3,5 +3,8 @@ export default {
   author: 'Автор',
   readMore: 'Прочети още',
   news: 'Новини',
-  settings: 'Настройки'
+  settings: 'Настройки',
+  language: 'Език',
+  english: 'Английски',
+  bulgarian: 'Български'
 }
