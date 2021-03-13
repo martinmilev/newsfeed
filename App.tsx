@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { NativeRouter } from 'react-router-native'
 import NewsFeed from './src'
 import { ArticleType } from './src/models/article'
+import { fetchTranslations } from './src/translations/index'
 
 const App: () => JSX.Element = () => {
   const apiUrl = 'https://newsapi.org/v2'
@@ -34,9 +35,15 @@ const App: () => JSX.Element = () => {
     fetchArticles('')
   }, [])
 
+  console.log('fetchTranslations', fetchTranslations('bg'))
+
   return (
     <NativeRouter>
-      <NewsFeed fetchArticles={fetchArticles} articles={state} />
+      <NewsFeed
+        fetchArticles={fetchArticles}
+        articles={state}
+        translations={fetchTranslations('bg')}
+      />
     </NativeRouter>
   )
 }

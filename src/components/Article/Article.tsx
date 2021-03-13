@@ -14,10 +14,11 @@ import {
 } from 'native-base'
 import { ArticleType } from '../../models/article'
 
-const Article: ({ article }: {
+const Article: ({ article, translations }: {
   article: ArticleType
-}) => JSX.Element = ({ article }) => {
-
+  translations: any
+}) => JSX.Element = ({ article, translations }) => {
+  console.log('articletranslations', translations)
   return (
     <Container>
       <Content>
@@ -25,7 +26,7 @@ const Article: ({ article }: {
           <CardItem>
             <Left>
               <Body>
-                <Text note>Author: {article.author}</Text>
+                <Text note>{translations.author}: {article.author}</Text>
               </Body>
             </Left>
             <Right>
@@ -57,7 +58,7 @@ const Article: ({ article }: {
                 textStyle={{ color: '#87838B' }}
                 onPress={() => Linking.openURL(article.url)}
               >
-                <Text>{'Read more'}</Text>
+                <Text>{translations.readMore}</Text>
               </Button>
             </Left>
           </CardItem>

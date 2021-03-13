@@ -4,6 +4,7 @@ import { Articles } from './components/Articles'
 import { Article } from './components/Article'
 import { Header } from './components/Header'
 import { ArticleType } from './models/article'
+import { Translations } from './models/translations'
 
 const routes = [
   {
@@ -15,14 +16,16 @@ const routes = [
   {
     path: '/article/:id',
     header: (props) => <Header {...props} />,
-    main: (props) => <Article article={props.history.location.state.article} />,
+    main: (props) => <Article article={props.history.location.state.article} {...props} />,
   },
 ]
 
-const NewsFeed: ({ fetchArticles, articles }: {
-  fetchArticles: (query: string) => {};
-  articles: ArticleType[];
-}) => JSX.Element = ({ fetchArticles, articles }) => {
+const NewsFeed: ({ fetchArticles, articles, translations }: {
+  fetchArticles: (query: string) => {}
+  articles: ArticleType[]
+  translations: Translations
+}) => JSX.Element = ({ fetchArticles, articles, translations }) => {
+
   return (
     <Fragment>
       {routes.map((route, index) => (
@@ -32,16 +35,16 @@ const NewsFeed: ({ fetchArticles, articles }: {
           path={route.path}
           render={(props) => (
             <Fragment>
-              <route.header fetchArticles={fetchArticles} />
+              <route.header fetchArticles={fetchArticles} translations={translations} />
               <route.main
                 articles={articles}
                 fetchArticles={fetchArticles}
+                translations={translations}
                 history={props.history}
                 {...props}
               />
             </Fragment>
-          )
-          }
+          )}
         />
       ))}
     </Fragment>
