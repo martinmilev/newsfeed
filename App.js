@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { NativeRouter } from 'react-router-native'
 import NewsFeed from './src'
 
-const App: () => React$Node = () => {
+const App = () => {
   const apiUrl = 'https://newsapi.org/v2'
   const apiKey = '4904a297062d46c59e955ebd0e7db5af'
 
@@ -16,8 +16,12 @@ const App: () => React$Node = () => {
     }
 
     const result = await fetch(url).then((response) => response.json())
-    const articles = result.articles 
-      ? result.articles.map((item, i) => ({ ...item, id: i + 1 }))
+    const articles = result.articles
+      ? result.articles.map((item, i) => ({
+          ...item,
+          id: i + 1,
+          publishedAt: new Date().toDateString(item.publishedAt),
+        }))
       : []
 
     setState([...articles])

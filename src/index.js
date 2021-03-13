@@ -10,7 +10,7 @@ const routes = [
     path: '/',
     exact: true,
     header: (props) => <Header {...props} />,
-    main: (props) =>  <Articles {...props} />
+    main: (props) => <Articles {...props} />,
   },
   {
     path: '/article/:id',
@@ -30,9 +30,7 @@ const NewsFeed = ({ fetchArticles, articles }) => {
           render={(props) => {
             return (
               <Fragment>
-                <route.header
-                  fetchArticles={fetchArticles}
-                />
+                <route.header fetchArticles={fetchArticles} />
                 <route.main
                   articles={articles}
                   fetchArticles={fetchArticles}

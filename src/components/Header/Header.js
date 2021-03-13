@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header as NBHeader, Item, Input, Left, Body, Right } from 'native-base'
 import { BackButton } from '../BackButton'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 const Header = ({ fetchArticles }) =>
   useHistory().location.pathname == '/' ? (

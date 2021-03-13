@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'react-native'
+import { Image, Linking } from 'react-native'
 import {
   Container,
   Content,
@@ -23,12 +23,12 @@ const Article = () => {
           <CardItem>
             <Left>
               <Body>
-                <Text note>{article.author}</Text>
+                <Text note>Author: {article.author}</Text>
               </Body>
             </Left>
             <Right>
               <Body>
-                <Text note>{new Date().toUTCString(article.publishedAt)}</Text>
+                <Text note>{article.publishedAt}</Text>
               </Body>
             </Right>
           </CardItem>
@@ -50,8 +50,12 @@ const Article = () => {
           </CardItem>
           <CardItem>
             <Left>
-              <Button transparent textStyle={{ color: '#87838B' }}>
-                <Text>{article.url}</Text>
+              <Button
+                transparent
+                textStyle={{ color: '#87838B' }}
+                onPress={() => Linking.openURL(article.url)}
+              >
+                <Text>{'Read more'}</Text>
               </Button>
             </Left>
           </CardItem>
