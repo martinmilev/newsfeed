@@ -1,16 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useState, useEffect } from 'react'
-import { FlatList } from 'react-native'
-import {
-  Content,
-  Card,
-  CardItem,
-  Text,
-  Thumbnail,
-  Header,
-  Item,
-  Input
-} from 'native-base'
+import { NativeRouter } from 'react-router-native'
+import NewsFeed from './src'
 
 const App: () => React$Node = () => {
   const apiUrl = 'https://newsapi.org/v2'
@@ -18,52 +9,27 @@ const App: () => React$Node = () => {
 
   const [state, setState] = useState([])
 
-  const fetchArtices = async (query) => {
-    let url =
-      query === ''
-        ? `${apiUrl}/top-headlines?country=us&apiKey=${apiKey}`
-        : `${apiUrl}/everything?q=${query}&apiKey=${apiKey}`
+  const fetchArticles = async (query) => {
+    let url = `${apiUrl}/top-headlines?country=us&apiKey=${apiKey}`
+    if (!query) {
+      url = `${apiUrl}/everything?q=${query}&apiKey=${apiKey}`
+    }
 
-    let result = await fetch(url).then((response) => response.json())
+    const result = await fetch(url).then((response) => response.json())
+    const articles = result.articles.map((item, i) => ({ ...item, id: i + 1 }))
 
-    setState([])
-    setState(result.articles)
+    setState([...articles])
   }
 
   useEffect(() => {
-    fetchArtices('')
+    fetchArticles()
   }, [])
 
   return (
-    <Fragment>
-      <Header searchBar rounded>
-        <Item>
-          <Input
-            placeholder='Search'
-            onChangeText={(text) => fetchArtices(text)}
-          />
-        </Item>
-      </Header>
-      <FlatList
-        data={state}
-        renderItem={ArticleCard}
-        keyExtractor={(item) => `${item.title}`}
-        onRefresh={() => fetchArtices()}
-        refreshing={false}
-      />
-    </Fragment>
+    <NativeRouter>
+      <NewsFeed fetchArticles={fetchArticles} articles={state} />
+    </NativeRouter>
   )
 }
 
 export default App
-
-const ArticleCard = ({ item }) => (
-  <Content>
-    <Card>
-      <CardItem>
-        <Thumbnail square source={{ uri: item.urlToImage }} />
-        <Text>{item.title}</Text>
-      </CardItem>
-    </Card>
-  </Content>
-)
