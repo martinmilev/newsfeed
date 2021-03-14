@@ -7,6 +7,7 @@ import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Settings } from './components/Settings'
 import { ArticleType } from './models/article'
+import { StyleProvider } from 'native-base'
 
 const routes = [
   {
@@ -38,7 +39,8 @@ const NewsFeed: ({ fetchArticles, articles }: {
           path={route.path}
           render={(props) => (
             <SettingsConsumer>
-              {({ translations }) => (
+              {({ translations, theme }) => (
+                <StyleProvider style={theme}>
                 <Fragment>
                   <Header fetchArticles={fetchArticles} translations={translations} />
                   <route.main
@@ -53,6 +55,7 @@ const NewsFeed: ({ fetchArticles, articles }: {
                     translations={translations}
                   />
                 </Fragment>
+                </StyleProvider>
               )}
             </SettingsConsumer>
           )}

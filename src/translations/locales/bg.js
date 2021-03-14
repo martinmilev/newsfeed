@@ -6,5 +6,8 @@ export default {
   settings: 'Настройки',
   language: 'Език',
   english: 'Английски',
-  bulgarian: 'Български'
+  bulgarian: 'Български',
+  theme: "Тема",
+  day: "Ден",
+  night: "Нощ"
 }

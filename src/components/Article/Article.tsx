@@ -13,15 +13,15 @@ import {
   Body,
 } from 'native-base'
 import { ArticleType } from '../../models/article'
+import { Translations } from '../../models/translations'
 
 const Article: ({ article, translations }: {
   article: ArticleType
-  translations: any
+  translations: Translations
 }) => JSX.Element = ({ article, translations }) => {
-  console.log('articletranslations', translations)
   return (
     <Container>
-      <Content>
+      <Content padder>
         <Card style={{ flex: 0 }}>
           <CardItem>
             <Left>

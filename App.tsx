@@ -7,7 +7,7 @@ import { SettingsProvider } from './src/context/SettingsContext'
 
 const App: () => JSX.Element = () => {
   const apiUrl = 'https://newsapi.org/v2'
-  const apiKey = '4904a297062d46c59e955ebd0e7db5af'
+  const apiKey = '2ba583d7861040c4990efa916a04351d'
 
   const [state, setState] = useState([])
 
