@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
 import { Route } from 'react-router-native'
+import { SettingsConsumer } from './context/SettingsContext'
 import { Articles } from './components/Articles'
 import { Article } from './components/Article'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Settings } from './components/Settings'
 import { ArticleType } from './models/article'
-import { Translations } from './models/translations'
 
 const routes = [
   {
@@ -24,11 +24,10 @@ const routes = [
   },
 ]
 
-const NewsFeed: ({ fetchArticles, articles, translations }: {
+const NewsFeed: ({ fetchArticles, articles }: {
   fetchArticles: (query: string) => {}
   articles: ArticleType[]
-  translations: Translations
-}) => JSX.Element = ({ fetchArticles, articles, translations }) => {
+}) => JSX.Element = ({ fetchArticles, articles, }) => {
 
   return (
     <Fragment>
@@ -38,20 +37,24 @@ const NewsFeed: ({ fetchArticles, articles, translations }: {
           exact={route.exact}
           path={route.path}
           render={(props) => (
-            <Fragment>
-              <Header fetchArticles={fetchArticles} translations={translations} />
-              <route.main
-                articles={articles}
-                fetchArticles={fetchArticles}
-                translations={translations}
-                history={props.history}
-                {...props}
-              />
-              <Footer
-                history={props.history}
-                translations={translations}
-              />
-            </Fragment>
+            <SettingsConsumer>
+              {({ translations }) => (
+                <Fragment>
+                  <Header fetchArticles={fetchArticles} translations={translations} />
+                  <route.main
+                    articles={articles}
+                    fetchArticles={fetchArticles}
+                    translations={translations}
+                    history={props.history}
+                    {...props}
+                  />
+                  <Footer
+                    history={props.history}
+                    translations={translations}
+                  />
+                </Fragment>
+              )}
+            </SettingsConsumer>
           )}
         />
       ))}
