@@ -7,7 +7,7 @@ export default {
   language: 'Language',
   english: 'English',
   bulgarian: 'Bulgarian',
-  theme: "Theme",
-  day: "Day",
-  night: "Night"
+  theme: 'Theme',
+  day: 'Day',
+  night: 'Night',
 }

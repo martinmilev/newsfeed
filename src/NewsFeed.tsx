@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Route } from 'react-router-native'
+import { StyleProvider } from 'native-base'
 import { SettingsConsumer } from './context/SettingsContext'
 import { Articles } from './components/Articles'
 import { Article } from './components/Article'
@@ -7,7 +8,6 @@ import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Settings } from './components/Settings'
 import { ArticleType } from './models/article'
-import { StyleProvider } from 'native-base'
 
 const routes = [
   {
@@ -41,20 +41,20 @@ const NewsFeed: ({ fetchArticles, articles }: {
             <SettingsConsumer>
               {({ translations, theme }) => (
                 <StyleProvider style={theme}>
-                <Fragment>
-                  <Header fetchArticles={fetchArticles} translations={translations} />
-                  <route.main
-                    articles={articles}
-                    fetchArticles={fetchArticles}
-                    translations={translations}
-                    history={props.history}
-                    {...props}
-                  />
-                  <Footer
-                    history={props.history}
-                    translations={translations}
-                  />
-                </Fragment>
+                  <Fragment>
+                    <Header fetchArticles={fetchArticles} translations={translations} />
+                    <route.main
+                      articles={articles}
+                      fetchArticles={fetchArticles}
+                      translations={translations}
+                      history={props.history}
+                      {...props}
+                    />
+                    <Footer
+                      history={props.history}
+                      translations={translations}
+                    />
+                  </Fragment>
                 </StyleProvider>
               )}
             </SettingsConsumer>

@@ -8,23 +8,23 @@ const Header: ({ fetchArticles, translations }: {
   fetchArticles: (query: string) => {}
   translations: Translations
 }) => JSX.Element = ({ fetchArticles, translations }) =>
-  useHistory().location.pathname == '/' ? (
-    <NBHeader searchBar rounded>
-      <Item>
-        <Input
-          placeholder={translations.search}
-          onChangeText={(text) => fetchArticles(text)}
-        />
-      </Item>
-    </NBHeader>
-  ) : (
-    <NBHeader>
-      <Left>
-        <BackButton history={useHistory()} />
-      </Left>
-      <Body />
-      <Right />
-    </NBHeader>
-  )
+    useHistory().location.pathname == '/' ? (
+      <NBHeader searchBar rounded>
+        <Item>
+          <Input
+            placeholder={translations.search}
+            onChangeText={(text) => fetchArticles(text)}
+          />
+        </Item>
+      </NBHeader>
+    ) : (
+      <NBHeader>
+        <Left>
+          <BackButton history={useHistory()} />
+        </Left>
+        <Body />
+        <Right />
+      </NBHeader>
+    )
 
 export default Header

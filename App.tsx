@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { NativeRouter } from 'react-router-native'
-import NewsFeed from './src'
+import NewsFeed from './src/NewsFeed'
 import { ArticleType } from './src/models/article'
 import { SettingsProvider } from './src/context/SettingsContext'
 

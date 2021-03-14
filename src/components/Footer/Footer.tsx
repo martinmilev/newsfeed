@@ -1,7 +1,6 @@
 import React from 'react'
 import { Footer as NBFooter, FooterTab, Button, Text } from 'native-base';
 import { Translations } from '../../models/translations'
-import { Link } from 'react-router-native';
 
 const Footer: ({ history, translations }: {
   history: any

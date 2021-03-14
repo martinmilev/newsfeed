@@ -8,7 +8,7 @@ const Settings: ({ translations }: {
   translations: Translations
 }) => JSX.Element = ({ translations }) => (
   <SettingsConsumer>
-    {({ language, updateLanguage, currentTheme, switchTheme}) => (
+    {({ language, updateLanguage, currentTheme, switchTheme }) => (
       <Container>
         <Content padder>
           <CardItem style={{ height: 150 }}>
